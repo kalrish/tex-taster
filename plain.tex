@@ -2,16 +2,6 @@
 
 \input \jobname.tex
 
-\ifnum\count\edition=0
-	% Paper size B5
-	\pagewidth=105mm
-	\pageheight=74mm
-	\hsize=80mm
-	\vsize=60mm
-\else
-	\hsize=105mm
-\fi
-
 \input ifluatex.sty
 \ifluatex
 	\input luaotfload.sty
