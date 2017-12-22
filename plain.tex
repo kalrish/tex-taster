@@ -1,0 +1,49 @@
+\input taster.ini
+
+\input \jobname.tex
+
+\ifnum\count\edition=0
+	% Paper size B5
+	\pagewidth=105mm
+	\pageheight=74mm
+	\hsize=80mm
+	\vsize=60mm
+\else
+	\hsize=105mm
+\fi
+
+\input ifluatex.sty
+\ifluatex
+	\input luaotfload.sty
+	
+	\font\fonta={lmr10}
+	\font\fontb={lmss10}
+	\font\fontc={lmtt10}
+\else
+	\font\fonta=cmr10
+	\font\fontb=cmss10
+	\font\fontc=cmtt10
+\fi
+\expandafter\def\csname setup1\endcsname{\fonta}
+\expandafter\def\csname setup2\endcsname{\fontb}
+\expandafter\def\csname setup3\endcsname{\fontc}
+
+\long\edef\sample{
+	\vbox{
+		It cannot be doubted, for it is an act of thought evident to conscience, that the thinking involves three notions.
+		\par
+		One is that of an I.
+		\par
+		The other two are interrelated: they are that of action and that of cause.
+		\par
+	}
+}
+
+\parindent=0pt
+\pretolerance=10000
+\tolerance=10000
+\def\interrowmaterial{\vskip 10pt}
+
+\try
+
+\end

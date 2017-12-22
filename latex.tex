@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{taster}
+\usepackage{ifluatex}
+\ifluatex
+	\usepackage{fontspec}
+	
+	\newfontfamily\texgyrepagella{TeX Gyre Pagella}
+	\newfontfamily\texgyreadventor{TeX Gyre Adventor}
+\fi
+
+\begin{document}
+	\begingroup
+		\expandafter\def\csname setup1\endcsname{}
+		\ifluatex
+			\expandafter\def\csname setup2\endcsname{\texgyrepagella}
+			\expandafter\def\csname setup3\endcsname{\texgyreadventor}
+		\else
+			\expandafter\def\csname setup2\endcsname{}
+			\expandafter\def\csname setup3\endcsname{}
+		\fi
+		
+		\edef\sample{This is an example sentence.}
+		
+		\def\interrowmaterial{
+			\vskip 5pt
+			\hrule height 0.4pt
+			\vskip 5pt
+		}
+		
+		\tasteall
+	\endgroup
+\end{document}

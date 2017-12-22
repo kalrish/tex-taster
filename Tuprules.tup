@@ -1,0 +1,9 @@
+.gitignore
+
+# Required to find installed Lua initialization scripts
+export LUATEXDIR
+# Required on Windows by kpathsea
+export USERPROFILE
+export OSFONTDIR
+
+!dvips = |> dvips -M* -o %o %f |> %B.ps

@@ -1,0 +1,18 @@
+include_rules
+
+
+: |> @(TEX) --ini --interaction=nonstopmode @(TEX_INI_FLAGS) --jobname=taster -- base.tex |> taster.log taster.fmt
+
+: taster.fmt |> @(TEX) --interaction=nonstopmode @(TEX_FLAGS) --fmt=taster --jobname=bare-print --output-format=@(FORMAT) -- bare.tex |> bare-print.log bare-print.@(FORMAT)
+: taster.fmt |> @(TEX) --interaction=nonstopmode @(TEX_FLAGS) --fmt=taster --jobname=bare-digital --output-format=@(FORMAT) -- bare.tex |> bare-digital.log bare-digital.@(FORMAT)
+: |> @(TEX) --interaction=nonstopmode @(TEX_FLAGS) --fmt=@(PLAIN_FORMAT) --jobname=plain-print --output-format=@(FORMAT) -- plain.tex |> plain-print.log plain-print.@(FORMAT)
+: |> @(TEX) --interaction=nonstopmode @(TEX_FLAGS) --fmt=@(PLAIN_FORMAT) --jobname=plain-digital --output-format=@(FORMAT) -- plain.tex |> plain-digital.log plain-digital.@(FORMAT)
+: |> @(TEX) --interaction=nonstopmode @(TEX_FLAGS) --fmt=@(LATEX_FORMAT) --jobname=latex --output-format=@(FORMAT) -- latex.tex |> latex.log latex.aux latex.@(FORMAT)
+
+ifeq (@(FORMAT),dvi)
+	: bare-print.dvi |> !dvips |>
+	: bare-digital.dvi |> !dvips |>
+	: plain-print.dvi |> !dvips |>
+	: plain-digital.dvi |> !dvips |>
+	: latex.dvi |> !dvips |>
+endif
