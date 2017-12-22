@@ -17,23 +17,23 @@
 	}
 \fi
 
-\def\tasteloopkernel{
-	\cr
-	\noalign{\csname interrowmaterial\endcsname}
-	\csname setup\the\count255\endcsname
-	\tasteloop
+\def\tasteloopkernel{%
+	\cr%
+	\noalign{\csname interrowmaterial\endcsname}%
+	\csname setup\the\count255\endcsname%
+	\tasteloop%
 }
-\def\tasteloop{
+\def\tasteloop{%
 	\global\advance\count255 by 1
-	\ifcsname setup\the\count255\endcsname
-		\expandafter\tasteloopkernel
-	\fi
+	\ifcsname setup\the\count255\endcsname%
+		\expandafter\tasteloopkernel%
+	\fi%
 }
-\def\tasteall{
+\def\tasteall{%
 	\count255=1
-	\halign{
-		##\sample\cr
-		\csname setup1\endcsname
-		\tasteloop\cr
-	}
+	\halign{%
+		##\sample\cr%
+		\csname setup1\endcsname%
+		\tasteloop\cr%
+	}%
 }
