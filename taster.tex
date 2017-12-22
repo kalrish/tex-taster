@@ -20,7 +20,7 @@
 \def\tasteloopkernel{%
 	\cr%
 	\noalign{\csname interrowmaterial\endcsname}%
-	\csname setup\the\count255\endcsname%
+	\csname label\the\count255\endcsname&\csname setup\the\count255\endcsname%
 	\tasteloop%
 }
 \def\tasteloop{%
@@ -32,8 +32,8 @@
 \def\tasteall{%
 	\count255=1
 	\halign{%
-		##\sample\cr%
-		\csname setup1\endcsname%
+		##&##\sample\cr%
+		\csname label1\endcsname&\csname setup1\endcsname%
 		\tasteloop\cr%
 	}%
 }
